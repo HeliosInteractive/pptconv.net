@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LibreOfficeConverter.cs" />
     <Compile Include="LibreOfficeFinder.cs" />
     <Compile Include="LibreOfficeProcess.cs" />
     <Compile Include="LibreOfficeProcessHelper.cs" />
