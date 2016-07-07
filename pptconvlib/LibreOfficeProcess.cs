@@ -31,7 +31,7 @@
             if (File.Exists(output))
                 File.Delete(output);
 
-            if (IsRunning)
+            if (LibreOfficeProcessHelper.IsRunning)
                 LibreOfficeProcessHelper.Kill();
 
             string[] arguments = new string[]
@@ -63,11 +63,6 @@
 
             Thread.Sleep(75);
             return File.Exists(output);
-        }
-
-        public static bool IsRunning
-        {
-            get { return Process.GetProcessesByName("soffice.bin").Count() > 0; }
         }
     }
 }

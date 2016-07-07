@@ -46,5 +46,10 @@
         {
             KillProcess("soffice.bin");
         }
+
+        public static bool IsRunning
+        {
+            get { return Process.GetProcessesByName("soffice.bin").Count() > 0; }
+        }
     }
 }
