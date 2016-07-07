@@ -4,6 +4,7 @@
 
     using System;
     using System.IO;
+    using System.Collections;
 
     using Microsoft.QualityTools.Testing.Fakes;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,8 +12,24 @@
     [TestClass]
     public class LibreOfficeFinderTest
     {
+        private static Hashtable vars;
+
+        static void RestoreEnvironment()
+        {
+            if (vars == null)
+                return;
+
+            ClearEnvironment();
+
+            foreach (string key in vars.Keys)
+                Environment.SetEnvironmentVariable(key, (string)vars[key]);
+        }
+
         static void ClearEnvironment()
         {
+            if (vars == null)
+                vars = Environment.GetEnvironmentVariables() as Hashtable;
+
             foreach (string key in Environment.GetEnvironmentVariables().Keys)
                 Environment.SetEnvironmentVariable(key, string.Empty);
         }
@@ -157,6 +174,8 @@
                 Assert.AreEqual(finder.SOfficeBinaryPath, sofficePath);
                 Assert.AreEqual(finder.SOfficeInstallPath, libreOfficeDir);
             }
+
+            RestoreEnvironment();
         }
     }
 }
