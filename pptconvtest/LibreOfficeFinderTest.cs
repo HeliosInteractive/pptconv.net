@@ -9,7 +9,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class OfficeFinderTest
+    public class LibreOfficeFinderTest
     {
         static void ClearEnvironment()
         {
