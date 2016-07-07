@@ -18,13 +18,13 @@
         }
 
         private SearchOptions options;
-        private bool executablesFound;
+        private volatile bool isFound;
         private string officeBasePath;
         private string officeUnoPath;
 
         public LibreOfficeFinder(SearchOptions opts)
         {
-            executablesFound = false;
+            isFound = false;
             options = opts;
         }
 
@@ -189,8 +189,8 @@
 
         public bool Found
         {
-            get { return executablesFound; }
-            private set { executablesFound = value; }
+            get { return isFound; }
+            private set { isFound = value; }
         }
 
         public string SOfficeBinaryPath
