@@ -28,6 +28,14 @@
             options = opts;
         }
 
+        public LibreOfficeFinder()
+            : this(
+                  SearchOptions.UserPath |
+                  SearchOptions.CommandLine |
+                  SearchOptions.ProgramDirectory |
+                  SearchOptions.EnvironmentVariable)
+        { }
+
         public void Search(string userPath = "")
         {
             Found = false;

@@ -59,7 +59,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="OfficeFinderTest.cs" />
+    <Compile Include="LibreOfficeFinderTest.cs" />
+    <Compile Include="LibreOfficeProcessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

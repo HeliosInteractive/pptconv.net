@@ -32,7 +32,7 @@
                 File.Delete(output);
 
             if (IsRunning)
-                return false;
+                LibreOfficeProcessHelper.Kill();
 
             string[] arguments = new string[]
             {
