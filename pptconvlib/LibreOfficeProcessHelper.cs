@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Management;
     using System.Diagnostics;
+    using System.ComponentModel;
 
     public static class LibreOfficeProcessHelper
     {
@@ -19,10 +20,8 @@
                     Process proc = Process.GetProcessById(pid);
                     if (!proc.HasExited) proc.Kill();
                 }
-                catch (ArgumentException)
-                {
-                    // Process already exited.
-                }
+                catch (ArgumentException) { /* zombie process */ }
+                catch (Win32Exception) { /* unable to kill the process */ }
 
                 if (processCollection != null)
                 {
