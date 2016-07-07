@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using System.Linq;
     using System.Threading;
     using System.Diagnostics;
 
@@ -13,6 +12,12 @@
         public LibreOfficeProcess(LibreOfficeFinder sofficeFinder)
         {
             finder = sofficeFinder;
+        }
+
+        public LibreOfficeProcess()
+            : this(new LibreOfficeFinder())
+        {
+            finder.Search();
         }
 
         public bool Convert(string presentation, string outdir, TimeSpan timeout)
@@ -26,7 +31,8 @@
             if (!Directory.Exists(outdir))
                 return false;
 
-            string output = Path.Combine(outdir, Path.GetFileName(presentation));
+            string outfile = string.Format("{0}.pdf", Path.GetFileNameWithoutExtension(presentation));
+            string output = Path.Combine(outdir, outfile);
 
             if (File.Exists(output))
                 File.Delete(output);
@@ -43,8 +49,7 @@
                 "--nodefault",
                 "--nocrashreport",
                 "--nofirststartwizard",
-                string.Format("--outdir \"{0}\"", outdir),
-                string.Format("--convert-to pdf \"{0}\"", presentation)
+                string.Format("--convert-to pdf --outdir \"{0}\" \"{1}\"", outdir, presentation)
             };
 
             ProcessStartInfo sinfo = new ProcessStartInfo
