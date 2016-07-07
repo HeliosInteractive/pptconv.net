@@ -60,7 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="LibreOfficeFinderTest.cs" />
-    <Compile Include="LibreOfficeProcessTest.cs" />
+    <Compile Include="LibreOfficeProcessHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

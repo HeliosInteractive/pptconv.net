@@ -6,7 +6,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class LibreOfficeProcessTest
+    public class LibreOfficeProcessHelperTest
     {
         [TestMethod]
         public void RunningInstanceTest()
@@ -16,18 +16,18 @@
             finder.Search();
 
             Assert.IsTrue(finder.Found);
-            Assert.IsFalse(LibreOfficeProcess.IsRunning);
+            Assert.IsFalse(LibreOfficeProcessHelper.IsRunning);
 
             using (Process process = new Process { StartInfo = new ProcessStartInfo { FileName = finder.SOfficeBinaryPath } })
             {
                 process.Start();
                 process.WaitForInputIdle();
 
-                Assert.IsTrue(LibreOfficeProcess.IsRunning);
+                Assert.IsTrue(LibreOfficeProcessHelper.IsRunning);
 
                 LibreOfficeProcessHelper.Kill();
 
-                Assert.IsFalse(LibreOfficeProcess.IsRunning);
+                Assert.IsFalse(LibreOfficeProcessHelper.IsRunning);
             }
         }
     }
