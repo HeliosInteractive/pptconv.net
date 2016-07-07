@@ -32,9 +32,6 @@
                 File.Delete(output);
 
             if (IsRunning)
-                ProcessHelper.TaskKill("soffice.bin");
-
-            if (IsRunning)
                 return false;
 
             string[] arguments = new string[]
@@ -68,7 +65,7 @@
             return File.Exists(output);
         }
 
-        public bool IsRunning
+        public static bool IsRunning
         {
             get { return Process.GetProcessesByName("soffice.bin").Count() > 0; }
         }
