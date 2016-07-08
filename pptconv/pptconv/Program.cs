@@ -21,7 +21,7 @@
 
             using (LibreOfficeConverter converter = new LibreOfficeConverter(finder, Directory.GetCurrentDirectory()))
             {
-                converter.ConversionSucceed += file => Console.WriteLine("SUCESS: {0}", file);
+                converter.ConversionSucceed += file => Console.WriteLine("SUCCESS: {0}", file);
                 converter.ConversionFailed += file => Console.WriteLine("FAILED: {0}", file);
 
                 args
@@ -31,8 +31,9 @@
                     .ToList()
                     .ForEach(file =>
                 {
-                    TimeSpan timeout = TimeSpan.FromSeconds(Math.Ceiling((double)(new FileInfo(file).Length / (1024 * 1024))));
-                    Console.WriteLine("Queuing file: {0} with timeout: {1} seconds", timeout.TotalSeconds);
+                    // 10 seconds per MB (kinda)
+                    TimeSpan timeout = TimeSpan.FromSeconds((Math.Ceiling((double)(new FileInfo(file).Length / (1024 * 1024))) + 1) * 10);
+                    Console.WriteLine("Queuing file: {0} with timeout: {1} seconds", file, timeout.TotalSeconds);
                     converter.Queue(file, timeout);
                 });
 
