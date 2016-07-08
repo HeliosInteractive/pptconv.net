@@ -11,7 +11,7 @@
     [TestClass]
     public class LibreOfficeProcessTest
     {
-        private static string Outdir
+        public static string Outdir
         {
             get
             {
@@ -24,7 +24,7 @@
             }
         }
 
-        private static string Slides
+        public static string Slides
         {
             get
             {
@@ -37,7 +37,7 @@
             }
         }
 
-        private static TimeSpan TestTimeout
+        public static TimeSpan TestTimeout
         {
             get { return TimeSpan.FromMinutes(1); }
         }

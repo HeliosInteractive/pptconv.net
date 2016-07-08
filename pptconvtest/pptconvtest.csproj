@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="LibreOfficeConverterTest.cs" />
     <Compile Include="LibreOfficeFinderTest.cs" />
     <Compile Include="LibreOfficeProcessHelperTest.cs" />
     <Compile Include="LibreOfficeProcessTest.cs" />
